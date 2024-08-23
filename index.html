@@ -224,7 +224,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <form>
+            <form name='voli-contact-form'>
               <div class="mb-3">
                 <label
                   for="name"
@@ -236,6 +236,7 @@
                   class="form-control"
                   id="name"
                   aria-describedby="name"
+                  name=nama
                 />
               </div>
               <div class="mb-3">
@@ -249,6 +250,7 @@
                   class="form-control"
                   id="email"
                   aria-describedby="email"
+                  name=email
                 />
               </div>
               <div class="mb-3">
@@ -261,6 +263,7 @@
                   class="form-control"
                   id="pesan"
                   rows="3"
+                  name=pesan
                 ></textarea>
               </div>
               <button
@@ -301,5 +304,17 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyxkyt15zjsoUlRghS3nNeeSdstNpduboBRvM5WpA5IvxW7rWHwDSTNEtHiYzV4gT_JIQ/exec'
+  const form = document.forms['voli-contact-form']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
   </body>
 </html>
